@@ -1,4 +1,5 @@
-﻿using PokemonReviewApp.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using PokemonReviewApp.Data;
 using PokemonReviewApp.Interfaces;
 using PokemonReviewApp.Models;
 
@@ -39,6 +40,21 @@ namespace PokemonReviewApp.Repository
         public bool PokemonExists(int pokeId)
         {
             return _context.Pokemon.Any(p => p.Id == pokeId);   
+        }
+
+        public bool TestConnection()
+        {
+            try
+            {
+                _context.Database.OpenConnection();
+                _context.Database.CloseConnection();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
