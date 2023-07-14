@@ -8,12 +8,10 @@ namespace PokemonReviewApp.Repository
     public class CountryRepository : ICountryRepository
     {
         private readonly DataContext _context;
-        private readonly IMapper _mapper;
 
-        public CountryRepository(DataContext dataContext, IMapper mapper)
+        public CountryRepository(DataContext dataContext)
         {
             _context = dataContext;
-            _mapper = mapper;
         }
         public bool CountryExists(int id)
         {
